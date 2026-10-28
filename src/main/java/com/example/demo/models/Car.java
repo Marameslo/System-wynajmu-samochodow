@@ -1,8 +1,22 @@
 package com.example.demo.models;
 
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
 public class Car {
     private Long id;
+    @NotBlank 
+    @Column(unique = true)
     private String model;
+    @NotBlank 
     private String description;
     private boolean isAvailable;
     private boolean isLocked;
@@ -23,75 +37,4 @@ public class Car {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        this.isAvailable = available;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.isLocked = locked;
-    }
-
-    public double getPricePerDay() {
-        return pricePerDay;
-    }
-
-    public void setPricePerDay(double pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public double getPositionX() {
-        return PositionX;
-    }
-
-    public void setPositionX(double positionX) {
-        this.PositionX = positionX;
-    }
-
-    public double getPositionY() {
-        return PositionY;
-    }
-
-    public void setPositionY(double positionY) {
-        this.PositionY = positionY;
-    }
 }
