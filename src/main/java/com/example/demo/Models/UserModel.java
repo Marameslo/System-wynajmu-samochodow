@@ -12,6 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class UserModel {
 @Id
@@ -24,16 +25,9 @@ public class UserModel {
     private String email;
     @NotBlank
     private String password;
+    @NotBlank 
+    private String role;
     private BigDecimal balance;
     private Long carId;
 
-    public UserModel(Long id, String name, String email, String password, BigDecimal balance, Long carId) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.balance = balance;
-        this.carId = carId;
-      
-    }
 }
