@@ -1,4 +1,5 @@
-package com.example.demo.models;
+package com.example.demo.Models;
+
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
@@ -7,27 +8,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class UserModel {
-@Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
-      private Long id;
-    @NotBlank 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank
     private String name;
     @NotBlank
-    @Column (unique = true)
+    @Column(unique = true)
     private String email;
     @NotBlank
     private String password;
-    @NotBlank 
     private String role;
     private BigDecimal balance;
     private Long carId;
 
+    public UserModel(Long id, String name, String email, String password, String role, BigDecimal balance, Long carId) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.balance = balance;
+        this.carId = carId;
+    }
 }

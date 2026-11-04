@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.RegisterRequest;
-import com.example.demo.servise.UserRegisterServise;
+import com.example.demo.dto.LoginRequest;
+import com.example.demo.servise.UserServise;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private UserRegisterServise userService;
+    private UserServise userService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
@@ -28,6 +29,15 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+        try {
+            String result = userService.loginUser(request);
+            return ResponseEntity.ok(result);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
