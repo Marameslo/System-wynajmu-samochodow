@@ -1,7 +1,7 @@
 package com.example.demo.controller;
-
-import com.example.demo.dto.RegisterRequest;
+import com.example.demo.dto.AuthResponse;
 import com.example.demo.dto.LoginRequest;
+import com.example.demo.dto.RegisterRequest;
 import com.example.demo.servise.UserServise;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         try {
-            String result = userService.loginUser(request);
-            return ResponseEntity.ok(result);
+            AuthResponse response = userService.loginUser(request);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
